@@ -18,6 +18,7 @@
 
 ### Example 1
 > Input : A
+
 > Output :
 <pre>
  A
@@ -25,6 +26,7 @@
 
 ### Example 2
 > Input : D
+
 > Output :
 <pre>
      A
