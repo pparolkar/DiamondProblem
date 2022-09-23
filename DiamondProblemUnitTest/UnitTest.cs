@@ -13,11 +13,11 @@ namespace DiamondProblemTest
             Assert.AreEqual("A\n", ShowDiamond.CreateDiamond("A"));
         }
 
-        [TestMethod]        
+        [TestMethod]
         public void Test_Wide_Range_For_Valid_Character()
-        {            
-            string testString = "    A\n   B B\n  C   C\n D     D\nE       E\n D     D\n  C   C\n   B B\n    A\n";
-            Assert.AreEqual(testString, ShowDiamond.CreateDiamond("E"));
+        {
+            string testString = "  A\n B B\nC   C\n B B\n  A\n";
+            Assert.AreEqual(testString, ShowDiamond.CreateDiamond("C"));
         }
 
         [TestMethod]        

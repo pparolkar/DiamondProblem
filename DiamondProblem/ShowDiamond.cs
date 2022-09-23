@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 namespace DiamondProblem
 {
     public class ShowDiamond
-    {    
+    {
+        #region Global Variables
+        private static int rowCount, alphabetAscii, firstLetterAscii = 65, lastLetterAscii = 90;
+        private static StringBuilder sb;
+        #endregion
+
         /// <summary>
         /// Description: Program to print diamond from given alphabet character
         /// Assumption: Input characters should be captial alphabet character.
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">args has all the values passed from the command line</param>
         static void Main(string[] args)
         {
             Console.Write("Enter any alphabet in capital letter to print diamond = ");
 
             string inputString;
-
 
             if (args.Length > 0)
             {
@@ -33,30 +37,37 @@ namespace DiamondProblem
             Console.Write(str);
 
             Console.Write("\nPress any key to close the console window.");
-            Console.ReadKey();
-
-            
+            Console.ReadKey();            
         }
 
         /// <summary>
         /// Description: Method to create diamond
         /// </summary>
+        /// <param name="inputString">input string</param>
+        /// <returns></returns>
         public static string CreateDiamond(string inputString)
         {
-            StringBuilder sb = new StringBuilder();
+            sb = new StringBuilder();
 
             try
             {               
                 char inputChar = Convert.ToChar(inputString);
 
-                int inputCharacter = Convert.ToInt32(inputChar); //Getting ascii value of user input
+                int inputCharacter = Convert.ToInt32(inputChar); //Getting ascii value from user input
                 
                 if(IsValidAlphabet(inputCharacter)) //Validate user input
                 {
-                    int rowCount = inputCharacter - 64; //Getting number of rows to print diamond
-                    int alphabetAscii = 64;
-                    CreateUpperTriangle(rowCount, alphabetAscii, sb);
-                    CreateLowerTriangle(rowCount, alphabetAscii, sb);
+                    rowCount = inputCharacter - (firstLetterAscii - 1); //Getting number of rows to print diamond
+                    alphabetAscii = (firstLetterAscii - 1);
+                    for (int rowNumber = 1; rowNumber <= rowCount; rowNumber++)
+                    {
+                        CreateRow(rowNumber);
+                    }    
+                    for (int rowNumber = rowCount - 1; rowNumber > 0; rowNumber--)
+                    {
+                        CreateRow(rowNumber);
+                    }
+                                       
                 }
                 else
                 {                    
@@ -73,68 +84,25 @@ namespace DiamondProblem
         }
 
         /// <summary>
-        /// Description: Method to create top triangle of the diamond
+        /// Description: Method to create rows of diamond
         /// </summary>
-        /// <param name="rowCount"></param>
-        /// <param name="alphabetAscii"></param>
-        /// <param name="sb"></param>
-        public static void CreateUpperTriangle(int rowCount, int alphabetAscii, StringBuilder sb)
+        /// <param name="rowNumber"></param>
+        private static void CreateRow(int rowNumber)
         {
-            int i, j, k;
-            for (i = 1; i <= rowCount; i++)
+            string space = "";
+
+            string tempStrOfSpacesBeforeLetters = space.PadLeft(rowCount - rowNumber);
+            sb.Append(tempStrOfSpacesBeforeLetters);
+            char alphabet = (char)(alphabetAscii + rowNumber);
+            sb.Append(alphabet.ToString());
+
+            if (rowNumber != 1)
             {
-                for (j = 1; j <= rowCount - i; j++)
-                {
-                    sb.Append(" ");
-                }
-                for (k = 1; k <= i * 2 - 1; k++)
-                {
-                    if (k == 1 || k == (i * 2 - 1))
-                    {
-                        char alphabet = (char)(alphabetAscii + i);
-                        sb.Append(alphabet.ToString());
-                    }
-                    else
-                    {
-                        sb.Append(" ");
-                    }
-                }
-
-                sb.Append("\n");
-            }           
-        
-        }
-
-        /// <summary>
-        /// Description: Method to create lower triangle of the diamond
-        /// </summary>
-        /// <param name="rowCount"></param>
-        /// <param name="alphabetAscii"></param>
-        /// <param name="sb"></param>
-        public static void CreateLowerTriangle(int rowCount, int alphabetAscii, StringBuilder sb)
-        {
-            int i, j, k;
-            for (i = rowCount - 1; i > 0; i--)
-            {
-                for (j = 1; j <= rowCount - i; j++)
-                {
-                    sb.Append(" ");
-                }
-                for (k = 1; k <= i * 2 - 1; k++)
-                {
-                    if (k == 1 || k == (i * 2 - 1))
-                    {
-                        char alphabet = (char)(alphabetAscii + i);
-                        sb.Append(alphabet.ToString());
-                    }
-                    else
-                    {
-                        sb.Append(" ");
-                    }
-                }
-
-                sb.Append("\n");
-            }            
+                string tempStrOfSpacesBetweenCharacters = space.PadLeft(((rowNumber * 2) - 3));
+                sb.Append(tempStrOfSpacesBetweenCharacters);
+                sb.Append(alphabet.ToString());
+            }
+            sb.Append("\n");
 
         }
 
@@ -147,7 +115,7 @@ namespace DiamondProblem
         {
             bool isValid = true;
             //Used ascii values from A to Z for printing diamond, Ascii value of A=65 and Z=90
-            if (!(inputCharacter >= 65 && inputCharacter <= 90))
+            if (!(inputCharacter >= firstLetterAscii && inputCharacter <= lastLetterAscii))
             {
                 isValid = false;
             }
