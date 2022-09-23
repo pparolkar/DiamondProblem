@@ -17,11 +17,16 @@
 - Enter proper input and diamond will will be printed
 
 ### Example 1
- > Input : A
+> Input : A
+> Output :
+<pre>
  A
+</pre>
 
 ### Example 2
 > Input : D
+> Output :
+<pre>
      A
     B B
    C   C
@@ -29,6 +34,8 @@
    C   C
     B B
      A
+</pre> 
+
 
 ## Steps to execute the Unit Test Project
 - Clone repository from Github using Visual Studio 
