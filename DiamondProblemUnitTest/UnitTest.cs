@@ -7,31 +7,37 @@ namespace DiamondProblemTest
     [TestClass]
     public class UnitTest
     {
+        IDiamond d;
+
         [TestMethod]        
         public void Test_First_Single_Character()
         {
-            Assert.AreEqual("A\n", ShowDiamond.CreateDiamond("A"));
+            d = new Diamond();
+            Assert.AreEqual("A\n", d.CreateDiamond("A"));
         }
 
         [TestMethod]
         public void Test_Wide_Range_For_Valid_Character()
         {
             string testString = "  A\n B B\nC   C\n B B\n  A\n";
-            Assert.AreEqual(testString, ShowDiamond.CreateDiamond("C"));
+            d = new Diamond();
+            Assert.AreEqual(testString, d.CreateDiamond("C"));
         }
 
         [TestMethod]        
         public void Test_UpperCase_For_Valid_Character()
         {
             string testString = " A\nB B\n A\n";
-            Assert.AreEqual(testString, ShowDiamond.CreateDiamond("B"));
+            d = new Diamond();
+            Assert.AreEqual(testString, d.CreateDiamond("B"));
         }
 
         [TestMethod]        
         public void Test_Valid_Character_Input()
         {
             string testString = "Please enter a character between A to Z, i.e. alphabates in capital letter.";
-            Assert.AreEqual(testString, ShowDiamond.CreateDiamond("*"));
+            d = new Diamond();
+            Assert.AreEqual(testString, d.CreateDiamond("*"));
         }
     }
 }

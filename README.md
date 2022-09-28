@@ -2,7 +2,7 @@
 
 ## Prerequisite
 - Visual Studio 2022
-- .Net Frmework 6.0
+- .Net Frmework v4.7.2
 - Windows Operating System
 
 ## Steps to execute the project
