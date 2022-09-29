@@ -39,5 +39,12 @@ namespace DiamondProblemTest
             d = new Diamond();
             Assert.AreEqual(testString, d.CreateDiamond("*"));
         }
+
+        [TestMethod]
+        public void Test_If_Any_Error_Occured()
+        {           
+            d = new Diamond();
+            Assert.IsTrue(d.CreateDiamond("").Contains("Something went wrong!!"));
+        }
     }
 }
